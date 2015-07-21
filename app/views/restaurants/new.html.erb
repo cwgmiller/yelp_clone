@@ -1,6 +1,6 @@
 <% if @restaurant.errors.any? %>
   <section id="errors" >
-    <h2> <%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved: </h2>
+    <h3> <%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved: </h3>
     <ul>
       <% @restaurant.errors.full_messages.each do |message| %>
         <li><%= message %></li>
