@@ -22,6 +22,7 @@ feature 'restaurants' do
   end
 
   context 'creating restaurants' do
+    
     scenario 'user to fill out a form, then displays the new restaurant' do
       visit '/restaurants'
       click_link 'Add a restaurant'
@@ -32,7 +33,7 @@ feature 'restaurants' do
     end
 
     context 'an invalid restaurant' do
-      it 'does not let you submit a name that is too short' do
+      scenario 'does not let you submit a name that is too short' do
         visit '/restaurants'
         click_link 'Add a restaurant'
         fill_in 'Name', with: 'kf'
