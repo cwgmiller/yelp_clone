@@ -66,39 +66,66 @@ end
 
   context 'editing restaurants' do
 
-    before { Restaurant.create name: 'KFC' }
-
     scenario 'let a user edit a restaurant' do
       sign_up_user
-      visit '/restaurants'
+      create_restaurant
+      visit '/'
       click_link 'Edit KFC'
       fill_in 'Name', with: 'Kentucky Fried Chicken'
       click_button 'Update Restaurant'
       expect(page).to have_content 'Kentucky Fried Chicken'
       expect(current_path).to eq '/restaurants'
     end
+
+    scenario 'user can only edit a restaurant they have created' do
+      sign_up_user
+      create_restaurant
+      click_link 'Sign out'
+      sign_up_user('test@example.com', 'testtest')
+      visit '/'
+      click_link 'Edit KFC'
+      expect(page).not_to have_content 'Update Restaurant'
+      expect(current_path).to eq '/restaurants'
+    end
   end
 
   context 'deleting restaurants' do
 
-    before {Restaurant.create name: 'KFC'}
-
     scenario 'removes a restaurant when a user clicks a delete link' do
       sign_up_user
+      create_restaurant
       visit '/restaurants'
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
+
+    scenario 'user can only delete a restaurant they have created' do
+      sign_up_user
+      create_restaurant
+      click_link 'Sign out'
+      sign_up_user('test@example.com', 'testtest')
+      visit '/'
+      click_link 'Delete KFC'
+      expect(page).not_to have_content 'Restaurant deleted successfully'
+      expect(page).to have_content 'KFC'
+    end
   end
 
-  def sign_up_user
+  def sign_up_user(email = 'banana@example.com', password = 'bananatest')
     visit '/'
     click_link 'Sign up'
-    fill_in 'Email', with: 'banana@example.com'
-    fill_in 'Password', with: 'banana123'
-    fill_in 'Password confirmation', with: 'banana123'
+    fill_in 'Email', with: email
+    fill_in 'Password', with: password
+    fill_in 'Password confirmation', with: password
     click_button 'Sign up'
+  end
+
+  def create_restaurant
+    visit '/'
+    click_link 'Add a restaurant'
+    fill_in 'Name', with: 'KFC'
+    click_button 'Create Restaurant'
   end
 
 end
