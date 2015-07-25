@@ -1,6 +1,7 @@
 <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
     <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+    <p><%= restaurant.description %></p>
       <i class="fa fa-pencil fa-fw"></i><%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
       <i class="fa fa-trash-o fa-fw"></i><%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %>
       <i class="fa fa-book fa-fw"></i><%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
@@ -9,7 +10,7 @@
         <ul>
           <% restaurant.reviews.each do |review| %>
             <li>
-              <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
+              <%= review.thoughts %>, <strong><%= review.rating %>/5</strong>
             </li>
           <% end %>
         </ul>

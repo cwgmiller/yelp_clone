@@ -1,15 +1,42 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.entryField {
+  width: 20em;
+  height: 2em;
+  background-color: #F0F0F0;
+  outline: none;
+  border: none;
+  font-weight: lighter;
+}
+
+.entryField:focus {
+  width: 20em;
+  height: 2em;
+  background-color: white;
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+
+}
+
+.entryField:focus::-webkit-input-placeholder {
+   font-weight: lighter;
+   color: transparent;
+
+}
+
+.entryField:focus:-moz-placeholder { /* Firefox 18- */
+   font-weight: lighter;
+   color: transparent;
+
+}
+
+.entryField:focus::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: lighter;
+   color: transparent;
+
+}
+
+.entryField:focus:-ms-input-placeholder {
+   font-weight: lighter;
+   color: transparent;
+
+}
