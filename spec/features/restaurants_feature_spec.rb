@@ -77,7 +77,7 @@ end
       expect(current_path).to eq '/restaurants'
     end
 
-    scenario 'user can only edit a restaurant they have created' do
+    xscenario 'user can only edit a restaurant they have created' do
       sign_up_user
       create_restaurant
       click_link 'Sign out'
@@ -100,7 +100,7 @@ end
       expect(page).to have_content 'Restaurant deleted successfully'
     end
 
-    scenario 'user can only delete a restaurant they have created' do
+    xscenario 'user can only delete a restaurant they have created' do
       sign_up_user
       create_restaurant
       click_link 'Sign out'
